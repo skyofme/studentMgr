@@ -1,4 +1,4 @@
-package com.etc.entity;
+package com.etc.bean;
 
 public class Student {
 

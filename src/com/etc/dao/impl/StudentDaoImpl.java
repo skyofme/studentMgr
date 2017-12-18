@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.etc.bean.Student;
 import com.etc.dao.StudentDao;
-import com.etc.entity.Student;
 import com.etc.util.DBUtils;
 
 public class StudentDaoImpl implements StudentDao {
 
 	DBUtils utils = new DBUtils();
-	
+
 	@Override
 	public int addStudent(Student student) {
 		String sql = "insert into student(name,age,score) values(?,?,?)";
-		int result = utils.excuteUpdate(sql, student.getName(),student.getAge(),student.getScore());
+		int result = utils.excuteUpdate(sql, student.getName(), student.getAge(), student.getScore());
 		return result;
 	}
 
@@ -29,7 +29,7 @@ public class StudentDaoImpl implements StudentDao {
 	@Override
 	public int updStudent(Student student) {
 		String sql = "update student set name = ?,age = ?,score = ? where id = ?";
-		int result = utils.excuteUpdate(sql, student.getName(),student.getAge(),student.getScore(),student.getId());
+		int result = utils.excuteUpdate(sql, student.getName(), student.getAge(), student.getScore(), student.getId());
 		return result;
 	}
 
@@ -37,8 +37,8 @@ public class StudentDaoImpl implements StudentDao {
 	public Student getStudentById(int studentId) {
 		String sql = "select * from student where id = ?";
 		List<Object> students = utils.excuteQuery(sql, studentId);
-		for(Object x : students){
-			Map<String, Object> map = (Map<String,Object>)x;
+		for (Object x : students) {
+			Map<String, Object> map = (Map<String, Object>) x;
 			Student student = new Student();
 			student.setAge(Integer.valueOf(map.get("age").toString()));
 			student.setId(Integer.valueOf(map.get("id").toString()));
@@ -54,8 +54,8 @@ public class StudentDaoImpl implements StudentDao {
 		String sql = "select * from student";
 		List<Student> studentList = new ArrayList<>();
 		List<Object> students = utils.excuteQuery(sql);
-		for(Object x : students){
-			Map<String, Object> map = (Map<String,Object>)x;
+		for (Object x : students) {
+			Map<String, Object> map = (Map<String, Object>) x;
 			Student student = new Student();
 			student.setAge(Integer.valueOf(map.get("age").toString()));
 			student.setId(Integer.valueOf(map.get("id").toString()));

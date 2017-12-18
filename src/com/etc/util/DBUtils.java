@@ -12,87 +12,87 @@ import java.util.List;
 import java.util.Map;
 
 public class DBUtils {
-	
+
 	private final static String driverName = "com.mysql.jdbc.Driver";
-	private final static String url = "jdbc:mysql://localhost:3306/etctest?useUnicode=true&characterEncoding=utf8";
+	private final static String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8";
 	private final static String username = "root";
-	private final static String password = "august";
-	
+	private final static String password = "root";
+
 	private Connection connection = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
-	
-	public Connection getConnection(){
+
+	public Connection getConnection() {
 		try {
 			Class.forName(driverName);
-			connection = DriverManager.getConnection(url,username,password);
+			connection = DriverManager.getConnection(url, username, password);
 		} catch (SQLException e) {
-			System.out.println("Êı¾İ¿âÁ¬½ÓÊ§°Ü£¡");
+			System.out.println("æ•°æ®åº“è¿æ¥å¤±è´¥ï¼");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			System.out.println("Ã»ÓĞÕÒµ½Êı¾İ¿âÇı¶¯£¡");
+			System.out.println("æ²¡æœ‰æ‰¾åˆ°æ•°æ®åº“é©±åŠ¨ï¼");
 			e.printStackTrace();
 		}
 		return connection;
 	}
-	
-	public int excuteUpdate(String sql,Object... args){
+
+	public int excuteUpdate(String sql, Object... args) {
 		try {
 			pstmt = getConnection().prepareStatement(sql);
-			if(args != null){
-				for(int i = 0;i < args.length;i++){
+			if (args != null) {
+				for (int i = 0; i < args.length; i++) {
 					pstmt.setObject(i + 1, args[i]);
 				}
 			}
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("Ö´ĞĞ¸üĞÂ²Ù×÷Ê§°Ü£¡");
+			System.out.println("æ‰§è¡Œæ›´æ–°æ“ä½œå¤±è´¥ï¼");
 			e.printStackTrace();
-		}finally{
+		} finally {
 			closeAll();
 		}
 		return 0;
 	}
-	
-	public List<Object> excuteQuery(String sql,Object... args){
+
+	public List<Object> excuteQuery(String sql, Object... args) {
 		List<Object> resultList = new ArrayList<Object>();
 		try {
 			pstmt = getConnection().prepareStatement(sql);
-			if(args != null){
-				for(int i = 0;i < args.length;i++){
+			if (args != null) {
+				for (int i = 0; i < args.length; i++) {
 					pstmt.setObject(i + 1, args[i]);
 				}
 			}
 			rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd = null;
 			rsmd = rs.getMetaData();
-			
+
 			int columnCount = rsmd.getColumnCount();
-			
-			while(rs.next()){
-				Map<String, Object> map = new HashMap<String,Object>();
-				for(int i = 1;i <= columnCount;i++){
+
+			while (rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				for (int i = 1; i <= columnCount; i++) {
 					map.put(rsmd.getColumnLabel(i), rs.getObject(i));
 				}
 				resultList.add(map);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			closeAll();
 		}
 		return resultList;
 	}
-	
-	public void closeAll(){
-		if(pstmt != null){
+
+	public void closeAll() {
+		if (pstmt != null) {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		if(connection != null){
+		if (connection != null) {
 			try {
 				connection.close();
 			} catch (SQLException e) {

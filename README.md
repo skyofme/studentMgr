@@ -1,2 +1,24 @@
 # studentMgr
-A demo for JSP study.
+- 一个JSP的demo
+- 涉及知识点
+	- 项目目录结构
+	- servlet
+	- jdbc数据库连接
+	- junit单元测试
+	- jstl标签
+	- fileupload文件上传
+	- ...
+- 项目开发过程
+	- 数据库设计
+	- bean
+	- dao.impl
+	- DBUtil
+	- service.impl
+	- jsp page
+	- servlet
+	- ...
+- 开发环境
+	- Windouws 7 旗舰版
+	- eclipse-jee-neon-3-win32-x86_64
+	- JDK 1.8.11 
+	- tomcat 7

@@ -2,9 +2,9 @@ package com.etc.test;
 
 import org.junit.Test;
 
+import com.etc.bean.Student;
 import com.etc.dao.StudentDao;
 import com.etc.dao.impl.StudentDaoImpl;
-import com.etc.entity.Student;
 
 public class StudentTest {
 	
@@ -18,9 +18,9 @@ public class StudentTest {
 		StudentDao dao = new StudentDaoImpl();
 		
 		if(dao.addStudent(student) == 1){
-			System.out.println("Ìí¼ÓÑ§Éú³É¹¦£¡");
+			System.out.println("æ·»åŠ å­¦ç”ŸæˆåŠŸï¼");
 		}else{
-			System.out.println("Ìí¼ÓÑ§ÉúÊ§°Ü£¡");
+			System.out.println("æ·»åŠ å­¦ç”Ÿå¤±è´¥ï¼");
 		}
 	}
 	

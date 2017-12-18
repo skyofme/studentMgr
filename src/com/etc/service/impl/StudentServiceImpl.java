@@ -1,10 +1,11 @@
-package com.etc.service;
+package com.etc.service.impl;
 
 import java.util.List;
 
+import com.etc.bean.Student;
 import com.etc.dao.StudentDao;
 import com.etc.dao.impl.StudentDaoImpl;
-import com.etc.entity.Student;
+import com.etc.service.StudentService;
 
 public class StudentServiceImpl implements StudentService{
 	
@@ -13,34 +14,34 @@ public class StudentServiceImpl implements StudentService{
 	@Override
 	public String addStudent(Student student) {
 		if(student.getName() == null){
-			return "Ñ§ÉúÃû³Æ²»ÄÜÎª¿Õ";
+			return "å­¦ç”Ÿåç§°ä¸èƒ½ä¸ºç©º";
 		}
 		if(dao.addStudent(student) == 1){
-			return "Ìí¼Ó³É¹¦£¡";
+			return "æ·»åŠ æˆåŠŸï¼";
 		}
-		return "Ìí¼ÓÊ§°Ü£¡";
+		return "æ·»åŠ å¤±è´¥ï¼";
 	}
 
 	@Override
 	public String delStudent(int studentId) {
 		if(studentId == 0){
-			return "Ñ§ÉúID²»ÄÜÎª¿Õ";
+			return "å­¦ç”ŸIDä¸èƒ½ä¸ºç©º";
 		}
 		if(dao.delStudent(studentId) == 1){
-			return "Ñ§ÉúÉ¾³ı³É¹¦";
+			return "å­¦ç”Ÿåˆ é™¤æˆåŠŸ";
 		}
-		return "Ñ§ÉúÉ¾³ıÊ§°Ü";
+		return "å­¦ç”Ÿåˆ é™¤å¤±è´¥";
 	}
 
 	@Override
 	public String updStudent(Student student) {
 		if(student.getName() == null){
-			return "Ñ§ÉúÃû³Æ²»ÄÜÎª¿Õ";
+			return "å­¦ç”Ÿåç§°ä¸èƒ½ä¸ºç©º";
 		}
 		if(dao.updStudent(student) == 1){
-			return "ĞŞ¸Ä³É¹¦£¡";
+			return "ä¿®æ”¹æˆåŠŸï¼";
 		}
-		return "ĞŞ¸ÄÊ§°Ü£¡";
+		return "ä¿®æ”¹å¤±è´¥ï¼";
 	}
 
 	@Override
